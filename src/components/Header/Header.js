@@ -39,7 +39,7 @@ function Header() {
       <AppBar
         position="static"
         sx={{
-          padding: "16px 16px",
+          padding: "9px 16px",
           background: "#172d40",
           //   mb: 5,
         }}

@@ -5,11 +5,8 @@ import ShareIcon from "@mui/icons-material/Share";
 import CallIcon from "@mui/icons-material/Call";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Logo from "../../Logo/Favicon.png";
-
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import { Dialog, DialogContent, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 // Dining
 import Dining1 from "../../Images/Dining1.jpeg";
@@ -262,9 +259,8 @@ const filter = [
   },
 ];
 
-const UserDetails = () => {
+const Sidebar = () => {
   const [filteredItems, setFilteredItems] = useState(filter);
-  const [activeButton, setActiveButton] = useState(null);
 
   const FilterButtonClicked = (category) => {
     // console.log("category:- ", category);
@@ -274,155 +270,41 @@ const UserDetails = () => {
       const newFilteredItems = filter.filter(
         (item) => item.category.toLowerCase() === category.toLowerCase()
       );
-      setTimeout(() => {
-        setFilteredItems(newFilteredItems);
-      }, 200);
+      setFilteredItems(newFilteredItems);
     }
   };
 
   const uniqueCategories = [...new Set(filter.map((item) => item.category))];
-
-  const handleShare = async (images) => {
-    // console.log(images);
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: "Check out this image!",
-          text: "Here's an image for you.",
-          url: images,
-        });
-      } catch (error) {
-        console.error("Error sharing:", error);
-      }
-    } else {
-      alert("Sharing is not supported in this browser.");
-    }
-  };
-
+  // console.log(uniqueCategories);
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        px: 2,
-        backgroundColor: "#F5EDE1",
-      }}
-    >
-      {/* User Details and 1st Paper*/}
-      <Paper
-        elevation={3}
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          alignItems: "center",
-          justifyContent: "space-between",
-          width: { xs: "90%", sm: "70%", md: "80%" },
-          p: { xs: 5, md: 10 },
-          borderRadius: 2,
-          flexWrap: "wrap",
-          gap: 3,
-          mb: 5,
-          mt: 5,
-        }}
-      >
-        <Box
-          component="img"
-          src={Logo}
-          alt="Logo"
-          sx={{ width: 300, height: 300, borderRadius: "5%" }}
-        />
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 3,
-            textAlign: { xs: "center", md: "left" },
-          }}
-        >
-          <Typography
-            variant="h4"
-            fontWeight="bold"
-            sx={{ color: "#b48255 !important" }}
-          >
-            IRAA INTERIORS
-          </Typography>
-          <Typography variant="h5" color="text.secondary">
-            Interior Contractor
-          </Typography>
-          <Typography
-            variant="h6"
-            color="text.secondary"
-            sx={{
-              display: "flex",
-              // justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <LocationOnIcon sx={{ mr: 1 }} /> Mumbai, Maharashtra
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              gap: 2,
-              flexWrap: "wrap",
-            }}
-          >
-            <Button
-              variant="contained"
-              sx={{
-                px: 3,
-                backgroundColor: "#172d40 !important",
-                color: "white !important",
-                "&:hover": { color: "goldenrod !important" },
-              }}
-              startIcon={<CallIcon />}
-            >
-              Contact
-            </Button>
-            <Button
-              variant="contained"
-              sx={{
-                px: 3,
-                backgroundColor: "#172d40 !important",
-                color: "white !important",
-                "&:hover": { color: "goldenrod !important" },
-              }}
-              startIcon={<ShareIcon />}
-            >
-              Share Profile
-            </Button>
-          </Box>
-        </Box>
-      </Paper>
-
+    <div style={{ width: "30%" }}>
       {/* Filter and 2nd Paper*/}
       <Paper
         elevation={3}
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: "column",
           alignItems: "center",
-          justifyContent: "space-between",
-          width: { xs: "90%", sm: "70%", md: "80%" },
+          width: { xs: "90%", sm: "70%", md: "50%" },
           p: { xs: 5, md: 10 },
           borderRadius: 2,
           flexWrap: "wrap",
-          overflowX: "auto",
+          overflowY: "auto",
           mb: 5,
+          mt: 1,
+          ml: 1,
           gap: 3,
-          // backgroundColor: "#2E2E2E",
+          backgroundColor: "#2E2E2E",
         }}
       >
         <Box
           sx={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "start",
             marginLeft: "5px",
             gap: 2,
-            overflowX: "auto", // Ensures horizontal scrolling
+            overflowy: "auto", // Ensures horizontal scrolling
             whiteSpace: "nowrap",
             paddingX: 2,
             paddingLeft: "0px", // Ensures first button is visible
@@ -442,16 +324,10 @@ const UserDetails = () => {
               fontWeight: "bold",
               "&:hover": {
                 borderColor: "darkgrey",
-                // backgroundColor: "#f9f9f9",
+                backgroundColor: "#f9f9f9",
               },
-              backgroundColor:
-                activeButton === "All" ? "#b48255" : "transparent",
-              color: activeButton === "All" ? "white" : "#b48255",
             }}
-            onClick={() => {
-              FilterButtonClicked(null);
-              setActiveButton("All");
-            }}
+            onClick={() => FilterButtonClicked(null)}
           >
             All
           </Button>
@@ -469,110 +345,18 @@ const UserDetails = () => {
                 fontWeight: "bold",
                 "&:hover": {
                   borderColor: "darkgrey",
-                  // backgroundColor: "#f9f9f9",
+                  backgroundColor: "#f9f9f9",
                 },
-                backgroundColor:
-                  activeButton === item ? "#b48255" : "transparent",
-                color: activeButton === item ? "white" : "#b48255",
               }}
-              onClick={() => {
-                FilterButtonClicked(item);
-                setActiveButton(item);
-              }}
+              onClick={() => FilterButtonClicked(item)}
             >
               {item}
             </Button>
           ))}
         </Box>
       </Paper>
-      {/* Results and 3rd Paper*/}
-      <Paper
-        elevation={3}
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          alignItems: "center",
-          justifyContent: "space-between",
-          width: { xs: "90%", sm: "70%", md: "80%" },
-          p: { xs: 5, md: 10 },
-          borderRadius: 2,
-          flexWrap: "wrap",
-          gap: 5,
-          mb: 5,
-        }}
-      >
-        {filteredItems.map((item) => (
-          <Card key={item.id} sx={{ maxWidth: 345 }}>
-            <CardMedia
-              component="img"
-              alt="Images"
-              height="300"
-              image={item.images}
-              sx={{
-                transition: "transform 0.3s ease-in-out",
-                "&:hover": {
-                  transform: "scale(1.1)",
-                },
-              }}
-            />
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{ mt: 2 }}
-              >
-                {item.name}
-              </Typography>
-              {/* <Typography gutterBottom variant="h5" component="div">
-                {item.category}
-              </Typography> */}
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                {item.description}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Box
-                sx={{
-                  display: "flex",
-                  gap: 2,
-                  mb: 1,
-                  ml: 1,
-                }}
-              >
-                <Button
-                  size="small"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#172d40 !important",
-                    color: "white !important",
-                    "&:hover": {
-                      color: "goldenrod !important",
-                    },
-                  }}
-                  onClick={() => window.open(item.images, "_blank")}
-                >
-                  View
-                </Button>
-                <Button
-                  size="small"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#172d40 !important",
-                    color: "white !important",
-                    "&:hover": { color: "goldenrod !important" },
-                  }}
-                  onClick={() => handleShare(item.images)}
-                >
-                  Share
-                </Button>
-              </Box>
-            </CardActions>
-          </Card>
-        ))}
-      </Paper>
-    </Box>
+    </div>
   );
 };
 
-export default UserDetails;
+export default Sidebar;
