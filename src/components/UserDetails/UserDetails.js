@@ -276,7 +276,7 @@ const UserDetails = () => {
       );
       setTimeout(() => {
         setFilteredItems(newFilteredItems);
-      }, 200);
+      }, 0);
     }
   };
 
@@ -446,7 +446,7 @@ const UserDetails = () => {
               },
               backgroundColor:
                 activeButton === "All" ? "#b48255" : "transparent",
-              // color: activeButton === "All" ? "white" : "#b48255",
+              color: activeButton === "All" ? "white" : "#b48255",
             }}
             onClick={() => {
               FilterButtonClicked(null);
@@ -473,7 +473,7 @@ const UserDetails = () => {
                 },
                 backgroundColor:
                   activeButton === item ? "#b48255" : "transparent",
-                // color: activeButton === item ? "white" : "#b48255",
+                color: activeButton === item ? "white" : "#b48255",
               }}
               onClick={() => {
                 FilterButtonClicked(item);
