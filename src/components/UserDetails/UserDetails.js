@@ -433,7 +433,7 @@ const UserDetails = () => {
           <Button
             variant="outlined"
             sx={{
-              color: "#b48255",
+              // color: "#b48255",
               padding: 1,
               flexShrink: 0,
               minWidth: "130px",
@@ -460,7 +460,7 @@ const UserDetails = () => {
               key={index}
               variant="outlined"
               sx={{
-                color: "#b48255",
+                // color: "#b48255",
                 padding: 1,
                 flexShrink: 0,
                 minWidth: "130px",
