@@ -54,7 +54,7 @@ function Header() {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
+              {/* <IconButton
                 size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -63,7 +63,7 @@ function Header() {
                 color="inherit"
               >
                 <MenuIcon sx={{ fontSize: "2rem" }} />
-              </IconButton>
+              </IconButton> */}
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
