@@ -356,7 +356,7 @@ const UserDetails = () => {
             color="text.secondary"
             sx={{
               display: "flex",
-              // justifyContent: "center",
+              justifyContent: { xs: "center", md: "flex-start" },
               alignItems: "center",
             }}
           >
