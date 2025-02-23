@@ -383,6 +383,7 @@ const UserDetails = () => {
               Contact
             </Button>
             <Button
+              onClick={() => handleShare("https://iraainteriors.netlify.app/")}
               variant="contained"
               sx={{
                 px: 3,

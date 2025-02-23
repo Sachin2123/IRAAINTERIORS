@@ -1,7 +1,11 @@
-import Header from "../src/components/Header/Header";
-import UserDetails from "../src/components/UserDetails/UserDetails";
-import Footer from "../src/components/Footer/footer";
-function App() {
+import { lazy } from "react";
+
+const Header = lazy(() => import("../src/components/Header/Header"));
+const UserDetails = lazy(() =>
+  import("../src/components/UserDetails/UserDetails")
+);
+const Footer = lazy(() => import("../src/components/Footer/footer"));
+const App = () => {
   return (
     <div className="App">
       <Header />
@@ -9,6 +13,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
