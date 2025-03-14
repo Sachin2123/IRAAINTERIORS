@@ -330,7 +330,11 @@ const UserDetails = () => {
           component="img"
           src={Logo}
           alt="Logo"
-          sx={{ width: 278, height: 300, borderRadius: "5%" }}
+          sx={{
+            width: { xs: 278, md: 300, sm: 300 },
+            height: 300,
+            borderRadius: "5%",
+          }}
         />
 
         <Box
@@ -407,7 +411,7 @@ const UserDetails = () => {
           flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
           justifyContent: "space-between",
-          width: { xs: "90%", sm: "70%", md: "80%" },
+          width: { xs: "80%", sm: "70%", md: "80%" },
           p: { xs: 5, md: 10 },
           borderRadius: 2,
           flexWrap: "wrap",
@@ -494,7 +498,7 @@ const UserDetails = () => {
           flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
           justifyContent: "space-between",
-          width: { xs: "90%", sm: "70%", md: "80%" },
+          width: { xs: "80%", sm: "70%", md: "80%" },
           p: { xs: 5, md: 10 },
           borderRadius: 2,
           flexWrap: "wrap",
